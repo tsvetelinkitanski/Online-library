@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { CardDashboard } from './CardDashboard'
 
 const Dashboard = () => {
+
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:3030/data/books?sortBy=_createdOn%20desc`)
+            .then(res => res.json())
+            .then(res => setData(res))
+    }, [])
     return (
         <section id="dashboard-page" className="dashboard">
             <h1>Dashboard</h1>
             <ul className="other-books-list">
-                <CardDashboard />
+                {data.map(card => <CardDashboard key={card._id} {...card} />)}
             </ul>
             <p className="no-books">No books in database!</p>
         </section>
