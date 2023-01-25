@@ -1,26 +1,26 @@
 import { login } from '../../api/user'
 import { useNavigate } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../authContext/AuthContext';
 
 const Login = () => {
     const navigate = useNavigate()
-    const onLogin = async (event) => {
+    const { onLogin } = useContext(AuthContext)
+    const onLoginHandler = async (event) => {
         event.preventDefault()
-        const formData = Object.fromEntries(new FormData(event.target));
-
-        const { email, password } = formData
+        const { email, password } = Object.fromEntries(new FormData(event.target));
 
         if (password || email) {
             await login(email, password)
-            event.target.reset()
+            onLogin({ email, password })
             navigate('/')
         }
     }
 
     return (
         <section id="login-page" className="login">
-            <form onSubmit={onLogin} id="login-form" action="" method="">
+            <form onSubmit={onLoginHandler} id="login-form" action="" method="">
                 <fieldset>
                     <legend>Login Form</legend>
                     <p className="field">

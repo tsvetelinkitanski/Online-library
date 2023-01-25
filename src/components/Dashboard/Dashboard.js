@@ -14,10 +14,16 @@ const Dashboard = () => {
     return (
         <section id="dashboard-page" className="dashboard">
             <h1>Dashboard</h1>
-            <ul className="other-books-list">
-                {data.map(card => <CardDashboard key={card._id} {...card} />)}
-            </ul>
-            <p className="no-books">No books in database!</p>
+
+            {data.length > 0
+                ?
+                <ul className="other-books-list">
+                    {data.map(card => <CardDashboard key={card._id} {...card} />)}
+                </ul>
+                :
+                <p className="no-books">No books in database!</p>}
+
+
         </section>
     )
 }
