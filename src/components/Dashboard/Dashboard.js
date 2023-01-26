@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { CardDashboard } from './CardDashboard'
 
@@ -10,7 +9,7 @@ const Dashboard = () => {
         fetch(`http://localhost:3030/data/books?sortBy=_createdOn%20desc`)
             .then(res => res.json())
             .then(res => setData(res))
-    }, [])
+        }, [])
     return (
         <section id="dashboard-page" className="dashboard">
             <h1>Dashboard</h1>

@@ -18,16 +18,6 @@ export function clearUserData() {
 export function setUserData(data) {
   localStorage.setItem("user", JSON.stringify(data));
 }
-
-// export function createSubmitHandler(handler) {
-//   return function (event) {
-//     event.preventDefault();
-//     const formData = Object.fromEntries(new FormData(event.target));
-
-//     handler(formData, event);
-//   };
-// }
-
 export function parseQuerystring(query = "") {
   return Object.fromEntries(query.split("&").map((kvp) => kvp.split("=")));
 }

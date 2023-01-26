@@ -1,7 +1,32 @@
+import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
+import { register } from "../../api/user"
+import { AuthContext } from "../../authContext/AuthContext"
+
 const Register = () => {
+
+    const navigate = useNavigate()
+    const { onLoginOrRegister } = useContext(AuthContext)
+
+    const onRegisterHandler = async (event) => {
+        event.preventDefault()
+        const formData = Object.fromEntries(new FormData(event.target));
+        console.log(formData);
+
+        const email = formData.email;
+        const password = formData.password;
+        const confPass = formData['confirm-pass'];
+
+        if (password || email || confPass) {
+            await register(email, password)
+            onLoginOrRegister({ email, password })
+            navigate('/')
+        }
+    }
+
     return (
         <section id="register-page" className="register">
-            <form id="register-form" action="" method="">
+            <form onSubmit={onRegisterHandler} id="register-form" action="" method="">
                 <fieldset>
                     <legend>Register Form</legend>
                     <p className="field">
