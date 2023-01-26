@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
-// (userId) =>
-//     `/data/books?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`
+export const Card = (card) => {
 
+    const viewDetails = () => {
 
+       async function  onDetails() {
+           const result = await fetch(`http://localhost:3030/data/books${card._id}`)
+             const data = await result.json()
+        }
+        onDetails()
+    }
 
-export const Card = ( card ) => {
     return (
         <div>
             <li className="otherBooks">
                 <h3>{card.title}</h3>
                 <p>Type: {card.type}</p>
                 <p className="img"><img src={card.imageUrl} /></p>
-                <Link className="button" to="/details">Details</Link>
+                <Link className="button" onClick={viewDetails} to={`/books${card._id}`}>Details</Link>
             </li>
         </div>
     )

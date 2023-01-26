@@ -1,5 +1,6 @@
 import { login } from '../../api/user'
 import { useNavigate } from 'react-router-dom';
+import { getUserData } from '../../api/util';
 
 import { useContext } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
@@ -7,15 +8,20 @@ import { AuthContext } from '../../authContext/AuthContext';
 const Login = () => {
     const navigate = useNavigate()
     const { onLoginOrRegister } = useContext(AuthContext)
-    
+
     const onLoginHandler = async (event) => {
         event.preventDefault()
         const { email, password } = Object.fromEntries(new FormData(event.target));
 
         if (password || email) {
             await login(email, password)
-            onLoginOrRegister({ email, password })
-            navigate('/')
+            const user = getUserData();
+            if (user) {
+                navigate('/')
+                onLoginOrRegister(user)
+            } else {
+                return null;
+            }
         }
     }
 

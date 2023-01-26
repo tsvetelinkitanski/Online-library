@@ -11,7 +11,6 @@ const Register = () => {
     const onRegisterHandler = async (event) => {
         event.preventDefault()
         const formData = Object.fromEntries(new FormData(event.target));
-        console.log(formData);
 
         const email = formData.email;
         const password = formData.password;

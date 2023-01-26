@@ -22,7 +22,7 @@ function App() {
   const onLoginOrRegister = (authData) => {
     setUser(authData)
   }
-
+console.log(user);
   return (
     <AuthContext.Provider value={{ user, onLoginOrRegister }}>
 
@@ -34,10 +34,10 @@ function App() {
             <Route path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/details' element={<Details />} />
+            <Route path='/books/:id' element={<Details />} />
             <Route path='/create' element={<Create />} />
             <Route path='/edit' element={<Edit />} />
-            <Route path='/my-books-page' element={<MyBooksPage userId = {user._id} />} />
+            <Route path='/my-books-page' element={<MyBooksPage />} />
             <Route path='/logout' element={<Logout />} />
           </Routes>
 

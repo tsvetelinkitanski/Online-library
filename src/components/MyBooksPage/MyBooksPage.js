@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react"
-import { AuthContext } from "../../authContext/AuthContext";
 import { Card } from "./Card";
 
 const MyBooksPage = (userId) => {
@@ -11,8 +10,7 @@ const MyBooksPage = (userId) => {
             .then(res => res.json())
             .then(res => setData(res))
     }, [])
-    console.log(userId);
-    console.log(data);
+
     return (
         <section id="my-books-page" className="my-books">
             <h1>My Books</h1>
