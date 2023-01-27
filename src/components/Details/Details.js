@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 
-const Details = () => {
+const Details = ({ user }) => {
     const [data, setData] = useState([]);
-
     useEffect(() => {
         fetch(`http://localhost:3030/data/${window.location.pathname}`)
-            .then(res => res.json())
-            .then(res => setData(res))
+        .then(res => res.json())
+        .then(res => setData(res))
     }, [])
 
     return (
@@ -16,10 +15,12 @@ const Details = () => {
                 <p className="type">Type: {data.title}</p>
                 <p className="img"><img src={data.imageUrl} /></p>
                 <div className="actions">
-                    <a className="button" href="#">Edit</a>
-                    <a className="button" href="#">Delete</a>
 
-                    <a className="button" href="#">Like</a>
+                    {user.email
+                        ? <><a className="button" href="#">Edit</a>
+                            <a className="button" href="#">Delete</a>
+                        </>
+                        : <a className="button" href="#">Like</a>}
 
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />

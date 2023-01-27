@@ -19,13 +19,11 @@ function App() {
     accessToken: '',
   })
 
-
-
   const onLoginOrRegister = (authData) => {
     setUser(authData)
   }
   return (
-    <AuthContext.Provider value={{ user, onLoginOrRegister }}>
+    <AuthContext.Provider value={{ onLoginOrRegister }}>
 
       <div id="root">
         <Header email={user.email} />
@@ -35,7 +33,7 @@ function App() {
             <Route path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/books/:id' element={<Details />} />
+            <Route path='/books/:id' element={<Details user={user} />} />
             <Route path='/create' element={<Create />} />
             <Route path='/edit' element={<Edit />} />
             <Route path='/my-books-page' element={<MyBooksPage user={user} />} />
