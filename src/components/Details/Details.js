@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
+import { Link, useParams } from 'react-router-dom'
 
 const Details = ({ user }) => {
+
+    const params = useParams();
+
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:3030/data/${window.location.pathname}`)
-        .then(res => res.json())
-        .then(res => setData(res))
+        const id = params.id
+        fetch(`http://localhost:3030/data/books/${id}`)
+            .then(res => res.json())
+            .then(res => setData(res))
     }, [])
 
     return (
@@ -17,10 +22,12 @@ const Details = ({ user }) => {
                 <div className="actions">
 
                     {user.email
-                        ? <><a className="button" href="#">Edit</a>
-                            <a className="button" href="#">Delete</a>
+                        ?
+                        <>
+                            <Link className="button" to={`/edit/${data._id}`}>Edit</Link>
+                            <Link className="button" to={`/delete/${data._id}`}>Delete</Link>
                         </>
-                        : <a className="button" href="#">Like</a>}
+                        : <Link className="button" to="#">Like</Link>}
 
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />

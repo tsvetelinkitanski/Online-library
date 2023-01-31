@@ -8,7 +8,7 @@ export const CardDashboard = (data) => {
             <h3>{data.title}</h3>
             <p>Type: {data.type}</p>
             <p className="img"><img src={data.imageUrl} /></p>
-            <Link className="button" to={`/books/${data._id}`}>Details</Link>
+            <Link className="button" to={`/details/${data._id}`}>Details</Link>
         </li>
     )
 }
