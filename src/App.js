@@ -34,7 +34,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/details/:id' element={<Details user={user} />} />
-            <Route path='/create' element={<Create />} />
+            <Route path='/create' element={<Create user={user} />} />
             <Route path='/edit/:id' element={<Edit user={user} />} />
             <Route path='/my-books-page' element={<MyBooksPage user={user} />} />
             <Route path='/logout' element={<Logout />} />

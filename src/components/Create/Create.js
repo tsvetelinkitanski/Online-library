@@ -1,10 +1,35 @@
+import { useNavigate } from "react-router-dom";
 
-const Create = () => {
+const Create = ({ user }) => {
+    const navigate = useNavigate();
 
     const onCreate = (e) => {
         e.preventDefault();
+        const formData = new FormData(e.target);
+        const { title, description, imageUrl, type } = Object.fromEntries(formData);
 
+        function addBookService(data, token) {
+            fetch('http://localhost:3030/data/books', {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json',
+                    'X-Authorization': token
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+        }
+
+        addBookService({
+            title: title,
+            description: description,
+            imageUrl: imageUrl,
+            type: type
+        }, user.accessToken);
+
+        navigate('/');
     }
+
     return (
         <section id="create-page" className="create">
             <form onSubmit={onCreate} id="create-form" action="" method="">
