@@ -17,7 +17,7 @@ const Details = ({ user }) => {
         <section id="details-page" className="details">
             <div className="book-information">
                 <h3>{data.title}</h3>
-                <p className="type">Type: {data.title}</p>
+                <p className="type">Type: {data.type}</p>
                 <p className="img"><img src={data.imageUrl} /></p>
                 <div className="actions">
 

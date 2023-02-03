@@ -1,7 +1,13 @@
+
 const Create = () => {
+
+    const onCreate = (e) => {
+        e.preventDefault();
+
+    }
     return (
         <section id="create-page" className="create">
-            <form id="create-form" action="" method="">
+            <form onSubmit={onCreate} id="create-form" action="" method="">
                 <fieldset>
                     <legend>Add new Book</legend>
                     <p className="field">

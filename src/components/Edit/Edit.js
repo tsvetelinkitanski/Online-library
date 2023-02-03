@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
-
+import { Navigate, useParams } from "react-router-dom";
+import { getAccessToken } from "../../api/util";
 
 const Edit = () => {
     const params = useParams();
+    const token = getAccessToken();
 
     const [data, setData] = useState({
         title: '',
@@ -19,10 +20,14 @@ const Edit = () => {
         fetch(`http://localhost:3030/data/books/${id}`)
             .then(res => res.json())
             .then(res => setData(res))
-    }, [])
+    }, []);
 
-    const submitHandler = () => {
+    const submitHandler = (e) => {
+        e.preventDefault();
 
+        const formData = new FormData(e.target);
+
+        const { title, description, imageUrl, type } = Object.fromEntries(formData);
     }
     return (
         <section id="edit-page" className="edit">
@@ -52,11 +57,11 @@ const Edit = () => {
                         <label htmlFor="type">Type</label>
                         <span className="input">
                             <select id="type" name="type" >
-                                <option defaultValue="Fiction" selected >{data.type}</option>
-                                <option defaultValue="Romance">Romance</option>
-                                <option defaultValue="Mistery">Mistery</option>
-                                <option defaultValue="ClassNameclassName=c">Clasic</option>
-                                <option defaultValue="Other">Other</option>
+                                <option value="Fiction">{data.type}</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Mistery">Mistery</option>
+                                <option value="ClassNameclassName=c">Clasic</option>
+                                <option value="Other">Other</option>
                             </select>
                         </span>
                     </p>
