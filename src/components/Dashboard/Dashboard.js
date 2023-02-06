@@ -9,7 +9,7 @@ const Dashboard = () => {
         fetch(`http://localhost:3030/data/books?sortBy=_createdOn%20desc`)
             .then(res => res.json())
             .then(res => setData(res))
-        }, [])
+    }, [])
     return (
         <section id="dashboard-page" className="dashboard">
             <h1>Dashboard</h1>
@@ -21,8 +21,6 @@ const Dashboard = () => {
                 </ul>
                 :
                 <p className="no-books">No books in database!</p>}
-
-
         </section>
     )
 }

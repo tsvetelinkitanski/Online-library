@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { addBookService } from "../../api/data";
 
 const Create = ({ user }) => {
     const navigate = useNavigate();
@@ -7,18 +8,6 @@ const Create = ({ user }) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const { title, description, imageUrl, type } = Object.fromEntries(formData);
-
-        function addBookService(data, token) {
-            fetch('http://localhost:3030/data/books', {
-                method: 'post',
-                headers: {
-                    'content-type': 'application/json',
-                    'X-Authorization': token
-                },
-                body: JSON.stringify(data)
-            })
-                .then(res => res.json())
-        }
 
         addBookService({
             title: title,

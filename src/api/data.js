@@ -9,26 +9,25 @@ const endpoints = {
     `/data/books?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`,
 };
 
-// export async function getAll() {
-//   return await api.get(endpoints.allCatalogs);
-// }
 
-// export async function getMyBooks(id) {
-//   return await api.get(endpoints.myBook(id));
-// }
+export const delBook = (id, token) => {
+  return fetch(`http://localhost:3030/data/books/${id}`, {
+    method: 'delete',
+    headers: {
+      'X-Authorization': token
+    }
+  })
+    .then(res => res.json())
+};
 
-// export async function getDetails(id) {
-//   return await api.get(endpoints.details + id);
-// }
-
-// export async function deleteDetail(id) {
-//   return api.del(endpoints.onDelete + id);
-// }
-
-// export async function onUpdate(id, data) {
-//   return await api.put(endpoints.update + id, data);
-// }
-
-// export async function createOffer(data) {
-//   return api.post(endpoints.create, data);
-// }
+export const addBookService = (data, token) => {
+  return fetch('http://localhost:3030/data/books', {
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      'X-Authorization': token
+    },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+}
