@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
-import { Navigate, useParams } from "react-router-dom";
-import { getAccessToken } from "../../api/util";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateBook } from "../../api/data";
 
-const Edit = () => {
+const Edit = ({ user }) => {
     const params = useParams();
-    const token = getAccessToken();
+    const token = user.accessToken;
+    const id = params.id
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         title: '',
@@ -13,9 +15,7 @@ const Edit = () => {
         type: '',
     });
 
-
     useEffect(() => {
-        const id = params.id
 
         fetch(`http://localhost:3030/data/books/${id}`)
             .then(res => res.json())
@@ -28,6 +28,11 @@ const Edit = () => {
         const formData = new FormData(e.target);
 
         const { title, description, imageUrl, type } = Object.fromEntries(formData);
+
+        updateBook({ title, description, imageUrl, type }, id, token)
+            .then(() => {
+                navigate(`/details/${id}`);
+            })
     }
     return (
         <section id="edit-page" className="edit">

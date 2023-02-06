@@ -6,7 +6,7 @@ const Details = ({ user }) => {
 
     const params = useParams();
     const token = user.accessToken
-    const id = params.id
+    const id = params.id;
     const navigate = useNavigate();
 
     const [data, setData] = useState([]);

@@ -31,3 +31,14 @@ export const addBookService = (data, token) => {
   })
     .then(res => res.json())
 }
+
+export const updateBook = (data, id, token) => {
+  return fetch(`http://localhost:3030/data/books/${id}`, {
+    method: 'put',
+    headers: {
+      'X-Authorization': token
+    },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+}
