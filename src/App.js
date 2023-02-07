@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { AuthContext } from '../src/authContext/AuthContext'
+import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/Header/Header.js'
 import Dashboard from './components/Dashboard/Dashboard.js'
 import Login from './components/Login/Login.js'
@@ -13,7 +14,7 @@ import MyBooksPage from './components/MyBooksPage/MyBooksPage.js'
 import Logout from './components/Logout/Logout';
 
 function App() {
-  const [user, setUser] = useState({
+  const [user, setUser] = useLocalStorage('user', {
     _id: '',
     email: '',
     accessToken: '',
