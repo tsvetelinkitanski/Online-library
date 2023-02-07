@@ -5,7 +5,7 @@ import { logout } from "../../api/user"
 const Logout = async () => {
 await logout()
 const navigate = useNavigate();
-navigate('/dashboard')
+navigate('/')
 }
 
-export default Logout
+export default Logout;

@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { register } from "../../api/user"
+import { getUserData } from "../../api/util"
 import { AuthContext } from "../../authContext/AuthContext"
 
 const Register = () => {
@@ -18,8 +19,13 @@ const Register = () => {
 
         if (password || email || confPass) {
             await register(email, password)
-            onLoginOrRegister({ email, password })
-            navigate('/')
+            const user = getUserData();
+            if (user) {
+                navigate('/')
+                onLoginOrRegister(user)
+            } else {
+                return null;
+            }
         }
     }
 

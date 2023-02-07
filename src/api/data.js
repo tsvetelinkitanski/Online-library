@@ -24,7 +24,6 @@ export const addBookService = (data, token) => {
   return fetch('http://localhost:3030/data/books', {
     method: 'post',
     headers: {
-      'content-type': 'application/json',
       'X-Authorization': token
     },
     body: JSON.stringify(data)

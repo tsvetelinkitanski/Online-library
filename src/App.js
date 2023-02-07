@@ -1,5 +1,4 @@
 import './App.css';
-import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { AuthContext } from '../src/authContext/AuthContext'
 import useLocalStorage from './hooks/useLocalStorage';
@@ -38,7 +37,7 @@ function App() {
             <Route path='/create' element={<Create user={user} />} />
             <Route path='/edit/:id' element={<Edit user={user} />} />
             <Route path='/my-books-page' element={<MyBooksPage user={user} />} />
-            <Route path='/logout' element={<Logout />} />
+            <Route path='/logout' element={<Logout user={user} />} />
           </Routes>
 
         </main>
