@@ -5,7 +5,6 @@ const useLocalStorage = (key, initialValue) => {
     const [state, setState] = useState(() => {
         try {
             let item = localStorage.getItem(key);
-            console.log(item);
             return item
                 ? JSON.parse(item)
                 : initialValue
@@ -23,8 +22,6 @@ const useLocalStorage = (key, initialValue) => {
             console.log(err);
         }
     };
-
-    console.log( state);
 
     return [
         state,
