@@ -19,10 +19,6 @@ export async function register(email, password) {
 
   return result;
 }
-export async function logout(token) {
-  return fetch(`http://localhost:3030/users/logout`, {
-    headers: {
-      'X-Authorization': token
-    }
-  })
+export async function logout() {
+  api.get(endpoints.logout);
 }

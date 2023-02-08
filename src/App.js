@@ -22,8 +22,16 @@ function App() {
   const onLoginOrRegister = (authData) => {
     setUser(authData)
   }
+
+  const logoutHandler = () => {
+    setUser({
+      _id: '',
+      email: '',
+      accessToken: '',
+    })
+  }
   return (
-    <AuthContext.Provider value={{ onLoginOrRegister }}>
+    <AuthContext.Provider value={{ onLoginOrRegister, logoutHandler }}>
 
       <div id="root">
         <Header email={user.email} />
@@ -37,7 +45,7 @@ function App() {
             <Route path='/create' element={<Create user={user} />} />
             <Route path='/edit/:id' element={<Edit user={user} />} />
             <Route path='/my-books-page' element={<MyBooksPage user={user} />} />
-            <Route path='/logout' element={<Logout user={user} />} />
+            <Route path='/logout' element={<Logout />} />
           </Routes>
 
         </main>

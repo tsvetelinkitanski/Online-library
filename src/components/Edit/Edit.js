@@ -65,7 +65,7 @@ const Edit = ({ user }) => {
                                 <option value="Fiction">{data.type}</option>
                                 <option value="Romance">Romance</option>
                                 <option value="Mistery">Mistery</option>
-                                <option value="ClassNameclassName=c">Clasic</option>
+                                <option value="Classic">Classic</option>
                                 <option value="Other">Other</option>
                             </select>
                         </span>

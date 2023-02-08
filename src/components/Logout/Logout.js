@@ -1,11 +1,19 @@
-import { useNavigate } from "react-router-dom"
-import { logout } from "../../api/user"
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../api/user";
+import { AuthContext } from "../../authContext/AuthContext";
 
+const Logout = () => {
+  const { logoutHandler } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-const Logout = async () => {
-await logout()
-const navigate = useNavigate();
-navigate('/')
-}
+  useEffect(() => {
+    logout().then(() => {
+      console.log("logout");
+      navigate("/");
+      logoutHandler();
+    });
+  }, []);
+};
 
 export default Logout;
